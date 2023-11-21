@@ -36,35 +36,34 @@ On the other hand, when **`include`** module is used, all statements are process
 
 **ii.** Next we create a folder and name it **`dynamic-assignments`**    **`$ mkdir dynamic-assignments`**
 
-![mkdir dynamic assignments](<img width="518" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/95f11579-d586-4a7c-92ed-cce3d155b4e7">)
+<img width="518" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/95f11579-d586-4a7c-92ed-cce3d155b4e7">
 
 **iii.** We use the set of commands below to move into the dynamic-assignments folder and create a file named **`env-vars.yml`**
 
 `$ cd dynamic-assignments`      `$ touch env-vars.yml`
 
 
-![cd touch env-vars](<img width="527" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/7fb50bf1-bbc7-45a0-8bad-9295c6323547">)
+<img width="527" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/7fb50bf1-bbc7-45a0-8bad-9295c6323547">
 
 **iv.** At this point, our GitHub directory structure is as shown in the image below:
 
-![directory structure 1](![image](https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/80818381-b4ac-4b50-9e73-ee04f0fd4c19)
-)
+![image](https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/80818381-b4ac-4b50-9e73-ee04f0fd4c19)
 
 **v.** Since we will be using the same Ansible to configure multiple environments, and each of these environments will have certain unique attributes, such as servername, ip-address etc., we will need a way to set values to variables per specific environment. For this reason, we proceed to create a folder **`env-vars`** to keep each environment’s variables file.
 
 **`$ mkdir env-vars`**
 
-![mkdir env-vars](<img width="500" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/869165f4-3134-4fd1-8d59-c8a2e1fb801d">)
+<img width="500" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/869165f4-3134-4fd1-8d59-c8a2e1fb801d">
 
 **vi.** Then, we move into the created **`env-vars`** folder, and for each environment, we create new **`YAML`** files which we will use to set variables.
 
 `$ cd env-vars`      `$ touch dev.yml stage.yml uat.yml prod.yml`
 
-![cd env-vars and create files](<img width="584" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/80e6faff-cdc3-42e9-b0ce-dd47870d882d">)
+<img width="584" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/80e6faff-cdc3-42e9-b0ce-dd47870d882d">
 
 **vi.** Our directory layout now looks as shown in the image below:
 
-![directory structure 2](![image](https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/392804ef-d60c-479b-8cc6-7aac4fe74b5e))
+![image](https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/392804ef-d60c-479b-8cc6-7aac4fe74b5e)
 
 **vii.** Now satisfied with our folder structure, we move ahead and paste the following block of instruction into the **`env-vars.yml`** file.
 
@@ -87,7 +86,7 @@ On the other hand, when **`include`** module is used, all statements are process
         - always
 ```
 
-![env-vars-yml config](<img width="439" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/3245c03c-f98d-4bbb-b6d6-565bdc826028">)
+<img width="439" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/3245c03c-f98d-4bbb-b6d6-565bdc826028">
 
 **viii.** There are three things to note about the configuration above in **vii.**
 
@@ -129,7 +128,7 @@ The next step is to update the **`site.yml`** file to make use of the dynamic as
   import_playbook: ../static-assignments/webservers.yml
 ```
 
-![site-yml config](https://<img width="406" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/b3bff5a2-47b5-4b1c-8263-574255354ef2">)
+<img width="406" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/b3bff5a2-47b5-4b1c-8263-574255354ef2">
 
 #### <br>Step 3: Update Git with Latest Code in `dynamic-assignments` Branch<br/> 
 
@@ -138,9 +137,8 @@ At this point, we we need to push all the changes we made locally to our remote 
 **i.** We use the following commands to stage, commit and push our branch to GitHub:
 
 `$ git status`      `$ git add <selected files>`      `$ git commit -m "commit message"`      `$ git push --set-upstream origin dynamic-assignments`
-```
 
-![git push set upstream](<img width="653" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/d6bb9df1-076d-4e78-b9bc-ab29863a48bf">)
+<img width="653" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/d6bb9df1-076d-4e78-b9bc-ab29863a48bf">
 
 **ii.** The next thing we do is to create a **Pull Request** in GitHub by following [these steps:](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) 
 
@@ -158,7 +156,7 @@ At this point, we we need to push all the changes we made locally to our remote 
 
 **v.** This takes us to the next page which shows that **`dynamic-assignments`** has been successfully merged to **`main`** branch.
 
-![merge successful](<img width="694" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/b9568198-b041-4c47-b865-f73ae0e8f640">)
+<img width="694" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/b9568198-b041-4c47-b865-f73ae0e8f640">
 
 ### <br>Making use of Community Roles<br/>
 
@@ -170,34 +168,34 @@ Now it is time to create a role for MySQL database which will perform the functi
 
 **ii.** For now, we no longer need webhooks and Jenkins to update our codes on the **`Jenkins-Ansible`** server, so we disable it by clicking on **"Disable Project"** in the project status page in our Jenkins environment.
 
-![disable project](<img width="941" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/e1b9b692-03ae-4120-b74c-ea1aae5649b2">)
+<img width="941" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/e1b9b692-03ae-4120-b74c-ea1aae5649b2">
 
 **ii.** Next, we head to our Jenkins-Ansible server and then we go to the **`ansible-config-mgt`** directory and we checkout from the **`dynamic-assignments`** branch into the main branch, and then we pull down the latest changes.
 
 `$ git checkout main`      `$ git pull`
 
 
-![git checkout main git pull](<img width="448" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/606ffecb-da27-48a1-a99a-0907b1c59350">)
+<img width="448" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/606ffecb-da27-48a1-a99a-0907b1c59350">
 
 **iii.** Then we execute the following command to create and move into a new branch that we will call **`roles-feature`**.
 
 **`$ git checkout -b roles-feature`**
 
-![git-checkout-b roles-feature](<img width="472" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/6187e988-3ed5-4cf9-9481-98d22f89585f">)
+<img width="472" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/6187e988-3ed5-4cf9-9481-98d22f89585f">
 
 **iv.** Inside the **`roles`** directory, we create a new MySQL role with ansible-galaxy and then we rename the folder to **`mysql`**:
 
 `$ ansible-galaxy install geerlingguy.mysql`      `$ mv geerlingguy.mysql/ mysql`
 
 
-![ansible galaxy geerling guy](<img width="604" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/32ae58d2-a97c-42e7-a1d2-7a183533f5c9">)
+<img width="604" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/32ae58d2-a97c-42e7-a1d2-7a183533f5c9">
 
 
 #### <br>Step 2: Configure Mysql Ansible Role<br/>
 
 **i.** The next thing we do is to go through the **README.md** file, and edit roles configuration to use the correct credentials for MySQL required for the **`tooling`** website. We navigate via VS Code explorer through **`roles > mysql > defaults > main.yml`** and we edit configuration in the **`main.yml`** file as shown in the image below:
 
-![main-yml edit](<img width="536" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/bd4d52b5-416d-44b4-a95e-7bbd885ec9f6">)
+<img width="536" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/bd4d52b5-416d-44b4-a95e-7bbd885ec9f6">
 
 NB: The IP Address in above image is the db private IP Address
 
@@ -217,11 +215,11 @@ NB: The IP Address in above image is the db private IP Address
 
 `$ cd static-assignments`      `$ touch db.yml`
 
-![cd and touch db-yml](<img width="491" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/9591914c-8105-4c8c-90dc-244992a38bf6">)
+<img width="491" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/9591914c-8105-4c8c-90dc-244992a38bf6">
 
 + Then we enter the file  and we paste in the configuration as shown in the image below:
 
-![reference db-yml role](<img width="219" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/14fd605a-9561-467a-99e9-ff94d7b163a5">)
+<img width="219" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/14fd605a-9561-467a-99e9-ff94d7b163a5">
 
 **iii.** We also need to reference the **`db.yml`** role inside **`site.yml`**. So, we put the following configuration inside site.yml:
 
@@ -231,7 +229,7 @@ NB: The IP Address in above image is the db private IP Address
   import_playbook: ../static-assignments/db.yml
 ```
 
-![db-yml in site-yml](<img width="377" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/24906c04-9919-4527-ac46-f6f07644d49f">)
+<img width="377" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/24906c04-9919-4527-ac46-f6f07644d49f">
 
 **iv.** We proceed to update the inventory **`ansible-config/inventory/dev.yml`** file with the Private IP address of our DB server using the following syntax:
 
@@ -240,7 +238,7 @@ NB: The IP Address in above image is the db private IP Address
 <db-Server-Private-IP-Address> ansible_ssh_user=ubuntu
 ```
 
-![dev-yml config](<img width="282" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/4dbab04c-b0a3-412d-a74d-383f439fb87d">)
+<img width="282" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/4dbab04c-b0a3-412d-a74d-383f439fb87d">
 
 
 #### <br>Step 3: Commit and Test DB Playbook<br/>
@@ -251,7 +249,7 @@ In this step, we shall stage and commit our changes in the **`roles-feature`** b
 
 `$ git add .`      `$ git commit -m "saved all updates to role-features branch"`
 
-![commit to roles-feature branch](<img width="638" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/0a6cbde6-cd33-4d5f-aa68-10325d6185f5">)
+<img width="638" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/0a6cbde6-cd33-4d5f-aa68-10325d6185f5">
 
 **ii.** The next step is to ensure connection to our **`Jenkins-Ansible`** server via **`ssh-agent`** as we did in [Project 11](https://github.com/kalkah/Project-11-Ansible-Automate) and then with the commands below, we run the playbook against our **`dev inventory`**.
 
