@@ -1,4 +1,4 @@
-<img width="491" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/bddee203-0008-4ed4-bffb-a30af286f37a"># Project-13-Ansible-Dynamic-Assignments-and-Community-Role
+# Project-13-Ansible-Dynamic-Assignments-and-Community-Role
 
 ## ANSIBLE DYNAMIC ASSIGNMENTS (INCLUDE) AND COMMUNITY ROLES
 
@@ -17,7 +17,6 @@ In order to successfully execute this project, the following prerequisites need 
 Dynamic assignments are useful in scenarios where the values of variables need to be determined based on certain conditions or inputs. From our work in [Project 12](https://github.com/kalkah/Project-12-ANSIBLE-REFACTORING-AND-STATIC-ASSIGNMENTS-IMPORTS-AND-ROLES) we can surmise that static assignments make use of the **`import`** ansible module. However, on the other hand, the module that enables dynamic assignments is the **`include`** ansible module.
 
 `import = Static`    `include = Dynamic`
-```
 
 When the **`import`** module is used, all statements are pre-processed at the time playbooks are parsed. This means that when the **`site.yml`** playbook is executed, Ansible will process all the playbooks referenced during the time it is parsing the statements. This also means that, during actual execution, if any statement changes, such statements will not be considered. Hence, it is static.
 
@@ -42,7 +41,7 @@ On the other hand, when **`include`** module is used, all statements are process
 **iii.** We use the set of commands below to move into the dynamic-assignments folder and create a file named **`env-vars.yml`**
 
 `$ cd dynamic-assignments`      `$ touch env-vars.yml`
-```
+
 
 ![cd touch env-vars](<img width="527" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/7fb50bf1-bbc7-45a0-8bad-9295c6323547">)
 
@@ -60,7 +59,6 @@ On the other hand, when **`include`** module is used, all statements are process
 **vi.** Then, we move into the created **`env-vars`** folder, and for each environment, we create new **`YAML`** files which we will use to set variables.
 
 `$ cd env-vars`      `$ touch dev.yml stage.yml uat.yml prod.yml`
-```
 
 ![cd env-vars and create files](<img width="584" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/80e6faff-cdc3-42e9-b0ce-dd47870d882d">)
 
@@ -139,14 +137,7 @@ At this point, we we need to push all the changes we made locally to our remote 
 
 **i.** We use the following commands to stage, commit and push our branch to GitHub:
 
-```
-$ git status
-
-$ git add <selected files>
-
-$ git commit -m "commit message"
-
-$ git push --set-upstream origin dynamic-assignments
+`$ git status`      `$ git add <selected files>`      `$ git commit -m "commit message"`      `$ git push --set-upstream origin dynamic-assignments`
 ```
 
 ![git push set upstream](<img width="653" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/d6bb9df1-076d-4e78-b9bc-ab29863a48bf">)
@@ -184,7 +175,7 @@ Now it is time to create a role for MySQL database which will perform the functi
 **ii.** Next, we head to our Jenkins-Ansible server and then we go to the **`ansible-config-mgt`** directory and we checkout from the **`dynamic-assignments`** branch into the main branch, and then we pull down the latest changes.
 
 `$ git checkout main`      `$ git pull`
-```
+
 
 ![git checkout main git pull](<img width="448" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/606ffecb-da27-48a1-a99a-0907b1c59350">)
 
@@ -197,7 +188,7 @@ Now it is time to create a role for MySQL database which will perform the functi
 **iv.** Inside the **`roles`** directory, we create a new MySQL role with ansible-galaxy and then we rename the folder to **`mysql`**:
 
 `$ ansible-galaxy install geerlingguy.mysql`      `$ mv geerlingguy.mysql/ mysql`
-```
+
 
 ![ansible galaxy geerling guy](<img width="604" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/32ae58d2-a97c-42e7-a1d2-7a183533f5c9">)
 
@@ -225,7 +216,6 @@ NB: The IP Address in above image is the db private IP Address
 + Then we move into the **`static-assignments`** folder and create a file we name **`db.yml`**
 
 `$ cd static-assignments`      `$ touch db.yml`
-```
 
 ![cd and touch db-yml](<img width="491" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/9591914c-8105-4c8c-90dc-244992a38bf6">)
 
@@ -266,7 +256,7 @@ In this step, we shall stage and commit our changes in the **`roles-feature`** b
 **ii.** The next step is to ensure connection to our **`Jenkins-Ansible`** server via **`ssh-agent`** as we did in [Project 11](https://github.com/kalkah/Project-11-Ansible-Automate) and then with the commands below, we run the playbook against our **`dev inventory`**.
 
 `$ cd /home/ubuntu/ansible-config-mgt`      `$ ansible-playbook -i /inventory/dev.yml playbooks/site.yml`
-```
+
 
 #### BLOCKER❗
 
