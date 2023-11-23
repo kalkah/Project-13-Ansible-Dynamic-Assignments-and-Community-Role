@@ -195,7 +195,7 @@ Now it is time to create a role for MySQL database which will perform the functi
 
 **i.** The next thing we do is to go through the **README.md** file, and edit roles configuration to use the correct credentials for MySQL required for the **`tooling`** website. We navigate via VS Code explorer through **`roles > mysql > defaults > main.yml`** and we edit configuration in the **`main.yml`** file as shown in the image below:
 
-<img width="536" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/bd4d52b5-416d-44b4-a95e-7bbd885ec9f6">
+<img width="458" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/fb4a3581-6f23-414e-a347-4227a11a203b">
 
 NB: The IP Address in above image is the db private IP Address
 
@@ -258,13 +258,16 @@ In this step, we shall stage and commit our changes in the **`roles-feature`** b
 
 #### BLOCKER❗
 
-![blocker error 5](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/b6dc5ef9-6b01-42a9-9fc0-2956179ab1d8)
+![image](https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/0e9c30c7-3ee8-4921-bc40-50632f385ac7)
 
-+ We got the error above when we ran the playbook, but after we examined the error message and did some investigations we realised that the hostname in the inventory folder in the **`dev.yml`** file was **`db`** while while in the static-assignments folders in the **`db.yml`** file, we had the hostname as **`database`**. So we fixed this issue and the playbook ran successfully as shown in the images below:
++ We got the error above when we ran the playbook, but after we examined the error message and did some investigations we reconfigure site.yml file
 
-![plybook success 1](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/570c2107-929b-4c5e-b2fd-63d213875f7b)
+<img width="356" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/049c93b2-4b46-40ed-93bd-f347a527eb85">
 
-![playbook success 2](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/41124e9d-36aa-4791-9987-3c6294f2714d)
++ So we fixed this issue and the playbook ran successfully as shown in the images below:
+
+<img width="660" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/e10dc0cc-a5d3-4198-9b3d-2e8dfc18de82">
+
 
 #### <br>Step 4: Load Balancer Roles<br/>
 
@@ -282,13 +285,10 @@ $ sudo ansible-galaxy install geerlingguy.apache
 $ mv geerlingguy.apache/ apache-lb
 ```
 
-![install load balancer roles](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/3bb63621-6379-4d83-8576-64d6bfb7d4e1)
+<img width="611" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/4226ce54-e8b5-47b7-bf72-90a54d4a40f5">
 
-**ii.** To make Nginx and Apache function as a loadbalancer, we need to update the **`default/main.yml`** file inside the Nginx and Apache roles with the private IP address of our two UAT webservers as shown in the images below:
+**ii.** To make Nginx and Apache function as a loadbalancer, we need to update the **`default/main.yml`** file inside the Nginx and Apache roles with the private IP address of our two UAT webservers 
 
-![diagram 2](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/c4a8192c-f78a-4c59-987f-26870634a42b)
-
-![make apache loadbalancer](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/adf0b7d4-3467-4119-ac24-491c9453744e)
 
 **iii.** Since we cannot use both Nginx and Apache as load balancer at the same time, we need to make use of variables to enable either one depending on preference. We proceed to declare the variables in the **`default/main.yml`** file inside the Nginx and Apache roles as follows:
 
@@ -298,15 +298,15 @@ $ mv geerlingguy.apache/ apache-lb
 
 + We declare another variable **`load_balancer_is_required`** and we set its value to **`false`** as well.
 
-![set variables to false](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/5302d8d5-e6df-4ccc-b32f-c4d7e21bf9fb)
+<img width="450" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/a9793f61-4c37-48ff-b303-62f86d04a056">
 
-![set apache variables to false](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/9fb75b2a-01c8-4d58-9cb4-c464a43fada0)
+<img width="437" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/08c37643-b7af-4960-a497-4456d0a04969">
 
 **iv.** Next, we update **`static-assignements`** by creating a **`loadbalancers.yml`**:
 
 **`$ touch loadbalancers.yml`**
 
-![load balancers-yml](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/e3c6ffbe-179f-403e-8893-d9175f8dc078)
+<img width="551" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/5644f3b9-b0ba-4238-a522-41439e862206">
 
 **v.** And then, we subsequently paste the following block of configuration into the file we just created:
 
@@ -318,7 +318,8 @@ $ mv geerlingguy.apache/ apache-lb
   become: true
 ```
 
-![diagram 5](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/104e5699-0d5b-4302-a619-abc4c9ac240f)
+<img width="512" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/58e4c391-de99-4c56-9e4a-f001e892e536">
+
 
 **vi.** The next step is to update the entry point for our playbooks, the **`site.yml`** file with the following configuration block:
 
@@ -329,11 +330,11 @@ $ mv geerlingguy.apache/ apache-lb
 when: load_balancer_is_required 
 ```
 
-![load balancers site yml](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/18e1a902-bea0-443a-acf9-5d1bc217f560)
+<img width="362" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/38a8b61b-1aab-4d5e-bc96-791b686bb535">
 
 **vii.** Afterwards, we update our **`inventory/dev.yml`** file with the private IP address of the load balancer server as shown below:
 
-![diagram 7](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/f9a8ff3b-4849-4edc-8945-1374fed055fd)
+<img width="304" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/48ccbc8d-1ad1-4db6-aabc-8a9f543284a9">
 
 **viii.** To complete our configuration, we need to decide whether it is Nginx or Apache that is used as a loadbalancer at any given time.  We make use of the **`env-vars/dev.yml`** file to define which load balancer to use in the UAT environment by setting the respective environmental variables to **`true`** or **`false`**.
 
@@ -357,15 +358,12 @@ load_balancer_is_required: true
 
 + The following images show the playbook output when we set the variable to enable **`nginx`** load balancer:
 
-![nginx playbook 1](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/00174d30-7be1-4128-bfc2-5058ec9763b1)
+![image](https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/050ca57d-88e5-47dd-802d-bb15e48ada7e)
 
-![nginx playbook 2](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/96162e62-c5bf-48d6-9da6-285cb0d3ecb8)
+![image](https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/9c864c3c-f422-459e-9a40-31428fda4a77)
+
 
 + The following images show the playbook output when we set the variable to enable **`apache`** load balancer:
-
-![apache playbook 1](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/ffd2102f-0cbe-4c9e-b59d-ef3509bf7997)
-
-![apache playbook 2](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/8808a331-3d36-47ea-86e9-488ad7c61dd0)
 
 #### <br>Step 5: Update Git with Latest Code in `roles-feature` Branch<br/> 
 
@@ -383,47 +381,32 @@ $ git commit -m "commit message"
 $ git push --set-upstream origin roles-feature
 ```
 
-![git 1](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/a91f5ccc-e301-45c2-834f-28e043283a80)
+<img width="582" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/abad3169-b92a-409a-8daa-a6d7305628b5">
 
-![git 2](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/4b0c3004-afee-4c5e-beeb-9d6c1ffd7bea)
-
-![git 3](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/1aaf349b-422a-48ba-ad02-6f3784a2c972)
+<img width="510" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/e56ebbbe-d109-46e3-a5e3-378193fb7fe3">
 
 **ii.** The next thing we do is to create a **Pull Request** in GitHub by following [these steps:](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) 
 
 + From the **`ansible-config-mgt`** repository page, we click on the **"Pull requests"** tab and then in the next page we click on the **"New pull request"** button.
 
-![pull requests](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/a27f564c-53f7-49c8-9905-aa7e440fc17b)
-
-![new pull requests](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/46e0162b-0cb7-4ff4-8514-6fd0c8ab0a7c)
-
 + This takes us to the **"Compare changes"** page where we choose the **`roles-feature`** branch to set up a comparison with the **`main`** branch.
-
-![compare changes 1](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/3da7a80b-f71a-4571-8396-8c968e12e05c)
 
 + Once we set up the comparisons between the **`main`** and the **`roles-feature`** branch, we then proceed to click on the **"Create pull request"** button.
 
-![comparing changes create pull request 1](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/16ad29fb-3e7f-4e2b-8ee1-81647ec89c9e)
-
 + In the next page, we input a pull request message inside the dialogue box and we click on the  **"Create pull request"** button.
-
-![open a pull request 1](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/2c49be69-a895-4a12-9420-9f1a16498166)
 
 **iii.** Now as shown in the image below, we act as a reviewer and we examine the changes in the **`roles-feature`** branch and check for conflicts with the **`main`** branch.
 
-![merge pull request 2](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/9469a339-9db0-4b14-bffe-8230f381674e)
-
 **iv.** As we are satisfied and happy with the changes made in **`roles-feature`**, we click on **"Merge pull request"** and then we click on **"Confirm merge"**
-
-![confirm merge 1](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/70ca9698-9d77-47cd-8cbf-34f983c7e91f)
 
 **v.** This takes us to the next page which shows that **`roles-feature`** has been successfully merged to **`main`** branch.
 
-![merge successful 1](https://github.com/QBDev0ps/DevOps-Cloud-projects/assets/140855364/5ec17b6f-c0b7-4dcc-a914-9ea3ebba29fb)
+<img width="545" alt="image" src="https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/1486c43e-6e6f-4f85-a018-de39fcda9803">
+
 
 ### <br>Conclusion<br/>
 
-The output images from **ix.** above show that we have been able to successfully use Ansible Dynamic Assignments and Roles to prepare UAT environment for tooling web solution. The goal of our project was to demonstrate the flexibility of Ansible with dynamic assignments (include) and leverage on Ansible roles to how the automation capabilities demonstrated in Projects [11](https://github.com/QBDev0ps/DevOps-Cloud-projects/blob/main/Project11.md) and [12](https://github.com/QBDev0ps/DevOps-Cloud-projects/blob/main/Project12.md) can be extended.
+The output images from **ix.** above show that we have been able to successfully use Ansible Dynamic Assignments and Roles to prepare UAT environment for tooling web solution. The goal of our project was to demonstrate the flexibility of Ansible with dynamic assignments (include) and leverage on Ansible roles to how the automation capabilities demonstrated in Projects [11](https://github.com/kalkah/Project-11-Ansible-Automate) and [12](https://github.com/kalkah/Project-12-ANSIBLE-REFACTORING-AND-STATIC-ASSIGNMENTS-IMPORTS-AND-ROLES/edit/main/README.md) can be extended.
 
 We began the project by creating and moving into a new branch **`dynamic-assignments`**. Here, we created the necessary folders and files and then inputted the necessary configuration to set our variables. Importantly, in our configuration, we used **`include_vars`** syntax instead of **`include`**, as the  **`include module`** has been deprecated since Ansible version **2.8**, and variants of **`include_*`** must be used. We made use of special variables that will help Ansible dynamically resolve the name of the inventory file being used and that will also help to determine the location of the running playbook, and from there navigate to other paths on the filesystem. We included the variables using a loop. **`with_first_found`** which implies that, looping through the list of files, the first one found is used. After, this we updated the **`site.yml`** file to make use of the dynamic assignment and then we staged, committed and pushed all the changes we made locally in our branch to our remote Github repository. In our repository, we initiated a pull request and merged the **`dynamic-assignments`** branch to our main branch.
 
