@@ -362,9 +362,6 @@ load_balancer_is_required: true
 
 ![image](https://github.com/kalkah/Project-13-Ansible-Dynamic-Assignments-and-Community-Role/assets/95209274/9c864c3c-f422-459e-9a40-31428fda4a77)
 
-
-+ The following images show the playbook output when we set the variable to enable **`apache`** load balancer:
-
 #### <br>Step 5: Update Git with Latest Code in `roles-feature` Branch<br/> 
 
 At this point, we we need to push all the changes we made locally to our remote Github repository.
